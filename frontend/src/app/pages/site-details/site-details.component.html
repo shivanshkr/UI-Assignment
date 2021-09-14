@@ -1,0 +1,325 @@
+<div class="content">
+  <div class="header">
+    <h1>Site Details</h1>
+    <button (click)="toggleModal()">+ Add New Site</button>
+  </div>
+  <div class="tableoption">
+    Show
+
+    <input
+      class="numberinput"
+      type="number"
+      [(ngModel)]="pageLimit"
+      min="5"
+      max="50"
+    />
+    Entries
+    <input
+      style="padding: 10px"
+      type="text"
+      placeholder="Search record"
+      [(ngModel)]="searchTerm"
+    />
+
+    <svg
+      (click)="filterresult()"
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-search"
+      viewBox="0 0 16 16"
+      style="padding-left: 10px"
+    >
+      <path
+        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+      />
+    </svg>
+  </div>
+  <div class="table">
+    <div class="thead">
+      <span class="flexitem">Domain & Plan Name</span>
+      <span class="flexitem"
+        >Storage
+        <svg
+          *ngIf="sortOptionStorage == 'unsorted'"
+          style="cursor: pointer"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-arrow-down-up"
+          viewBox="0 0 16 16"
+          (click)="onSortClick('sortUp')"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"
+          />
+        </svg>
+        <svg
+          *ngIf="sortOptionStorage == 'sortUp'"
+          style="cursor: pointer"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-sort-up"
+          viewBox="0 0 16 16"
+          (click)="onSortClick('sortDown')"
+        >
+          <path
+            d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.498.498 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707V12.5zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"
+          />
+        </svg>
+        <svg
+          *ngIf="sortOptionStorage == 'sortDown'"
+          style="cursor: pointer"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-sort-down"
+          viewBox="0 0 16 16"
+          (click)="onSortClick('sortUp')"
+        >
+          <path
+            d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 11.293V2.5zm3.5 1a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"
+          />
+        </svg>
+      </span>
+      <span class="flexitem">Monthly Visitor</span>
+      <span class="flexitem">Domain</span>
+      <span class="flexitem">Status</span>
+    </div>
+    <div class="" *ngFor="let domain of domainList">
+      <div class="tbody">
+        <div class="flexitem">
+          <b>{{ domain.domain }}</b>
+          <div style="color: #8a92a6; font-size: 0.75rem; margin-top: 5px">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="#5b7cfd"
+              class="bi bi-patch-check"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10.354 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708 0z"
+              />
+              <path
+                d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911l-1.318.016z"
+              />
+            </svg>
+            Professional Plan
+          </div>
+        </div>
+        <div class="flexitem">
+          <div class="chart">
+            <div
+              [style.width]="
+                greenPartStorage(domain.usedStorage, domain.storage)
+              "
+              class="green"
+            ></div>
+            <div
+              [style.width]="
+                whitePartStorage(domain.usedStorage, domain.storage)
+              "
+              class="white"
+            ></div>
+          </div>
+          <b>{{ domain.usedStorage | gB }} of {{ domain.storage | gB }}</b>
+        </div>
+        <div class="flexitem">
+          <div class="chart">
+            <div
+              [style.width]="
+                greenPartMontlyVisitor(
+                  domain.montlyVisitor,
+                  domain.monthlyVisitorCapacity
+                )
+              "
+              class="green"
+            ></div>
+            <div
+              [style.width]="
+                whitePartMontlyVisitor(
+                  domain.montlyVisitor,
+                  domain.monthlyVisitorCapacity
+                )
+              "
+              class="white"
+            ></div>
+          </div>
+          <b
+            >{{ domain.montlyVisitor }} of
+            {{ domain.monthlyVisitorCapacity }}</b
+          >
+        </div>
+        <div class="flexitem">
+          <!-- <div class="circle-border">
+            <div class="circle">
+              {{ domain.usedDomains }} / {{ domain.availableDomains }}
+            </div>
+          </div> -->
+          <div class="circle">
+            {{ domain.usedDomains }} / {{ domain.availableDomains }}
+          </div>
+        </div>
+        <div class="flexitem">
+          <div
+            [ngClass]="{
+              active: domain?.status == 'Active',
+              inactive: domain?.status == 'Inactive'
+            }"
+          >
+            {{ domain?.status ? domain?.status : "      " }}
+          </div>
+        </div>
+      </div>
+      <div *ngIf="domain?.subdomain?.length > 0">
+        <div class="tbodySub" *ngFor="let subdomain of domain.subdomain">
+          <div class="flexitem">
+            <b>{{ subdomain.name }}</b>
+          </div>
+          <div class="flexitem">
+            <b> {{ subdomain.usedStorage | gB }}</b>
+          </div>
+          <div class="flexitem">
+            <b>{{ subdomain.montlyVisitor }}</b>
+          </div>
+          <div class="flexitem">
+            <div
+              [ngClass]="{
+                primary: subdomain?.domainTag == 'Primary',
+                staging: subdomain?.domainTag == 'Staging',
+                addOn: subdomain?.domainTag == 'Add On'
+              }"
+            >
+              {{ subdomain.domainTag }}
+            </div>
+          </div>
+          <div class="flexitem">
+            <div
+              [ngClass]="{
+                active:
+                  subdomain?.status == 'Active' || subdomain?.status == null,
+                inactive: subdomain?.status == 'Inactive'
+              }"
+            >
+              {{ subdomain?.status ? subdomain?.status : "Active" }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" *ngIf="showModal">
+    <div class="modal-content">
+      <span class="close" (click)="toggleModal()">&times;</span>
+      <form [formGroup]="addDomainForm">
+        <div class="row">
+          <div class="column">
+            <div class="form-group">
+              <label for="domain">Domain Name*</label>
+              <input
+                type="text"
+                id="domain"
+                name="domain"
+                formControlName="domain"
+              />
+              <span
+                style="color: red"
+                *ngIf="
+                  addDomainForm.controls.domain.errors &&
+                  addDomainForm.controls.domain.touched
+                "
+                >Domain Name is required</span
+              >
+            </div>
+            <div class="form-group">
+              <label for="subdomain">Subdomain</label>
+              <div
+                formArrayName="subdomain"
+                *ngFor="let item of getSubdomain().controls; let i = index"
+              >
+                <input
+                  type="text"
+                  id="domain"
+                  name="domain"
+                  formControlName="{{ i }}"
+                />
+                <button class="buttonX" (click)="remove(i)">X</button>
+              </div>
+              <button
+                style="border: 1px solid #111; float: right"
+                (click)="add()"
+              >
+                Add More
+              </button>
+            </div>
+          </div>
+          <div class="column">
+            <div class="form-group">
+              <label for="storage">Storage*</label>
+              <input
+                type="number"
+                id="storage"
+                name="storage"
+                formControlName="storage"
+              />
+              <span
+                style="color: red"
+                *ngIf="
+                  addDomainForm.controls.storage.errors &&
+                  addDomainForm.controls.storage.touched
+                "
+                >Storage is required</span
+              >
+            </div>
+            <div class="form-group">
+              <label for="monthlyVisitorCapacity">Monthly Visitor*</label>
+              <input
+                type="number"
+                id="monthlyVisitorCapacity"
+                name="monthlyVisitorCapacity"
+                formControlName="monthlyVisitorCapacity"
+              />
+              <span
+                style="color: red"
+                *ngIf="
+                  addDomainForm.controls.monthlyVisitorCapacity.errors &&
+                  addDomainForm.controls.monthlyVisitorCapacity.touched
+                "
+                >Monthly Visitor Capacity is required</span
+              >
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            style="
+              border: 1px solid #5b7cfd;
+              float: right;
+              margin: 5px;
+              background-color: #5b7cfd;
+            "
+            (click)="submit()"
+            [disabled]="addDomainForm.invalid"
+          >
+            Save Changes
+          </button>
+          <button
+            style="border: 1px solid #111; float: right; margin: 5px"
+            (click)="toggleModal()"
+          >
+            Close
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

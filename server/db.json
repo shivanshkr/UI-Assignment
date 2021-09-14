@@ -1,0 +1,119 @@
+{
+  "domainLists": [
+    {
+      "id": 1,
+      "domain": "xyz.com",
+      "storage": "100gb",
+      "usedStorage": "50gb",
+      "domainTag": "Primary",
+      "availableDomains": 10,
+      "usedDomains": 4,
+      "monthlyVisitorCapacity": 10000,
+      "montlyVisitor": 100,
+      "subdomain": [
+        {
+          "id": 11,
+          "name": "abc.xyz.com",
+          "usedStorage": "10gb",
+          "domainTag": "Staging",
+          "montlyVisitor": 700
+        },
+        {
+          "id": 12,
+          "name": "adef.xyz.com",
+          "usedStorage": "40gb",
+          "domainTag": "Add On",
+          "montlyVisitor": 1100
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "domain": "xyz.com",
+      "storage": "100gb",
+      "usedStorage": "50gb",
+      "domainTag": "Primary",
+      "subdomain": [],
+      "status": "Inactive",
+      "availableDomains": 10,
+      "usedDomains": 1,
+      "monthlyVisitorCapacity": 10000,
+      "montlyVisitor": 2000
+    },
+    {
+      "domain": "abcd.com",
+      "storage": "1000gb",
+      "usedStorage": "118gb",
+      "domainTag": "Primary",
+      "availableDomains": 5,
+      "usedDomains": 3,
+      "monthlyVisitorCapacity": 100000,
+      "montlyVisitor": 18000,
+      "subdomain": [
+        {
+          "name": "1.abcd.com",
+          "usedStorage": "28gb",
+          "montlyVisitor": 2000,
+          "domainTag": "Add On"
+        },
+        {
+          "name": "2.abcd.com",
+          "usedStorage": "90gb",
+          "montlyVisitor": 16000,
+          "domainTag": "Add On"
+        }
+      ],
+      "id": 3
+    },
+    {
+      "domain": "shivansh.com",
+      "storage": "1000gb",
+      "usedStorage": "0gb",
+      "domainTag": "Primary",
+      "availableDomains": 5,
+      "usedDomains": 3,
+      "monthlyVisitorCapacity": 2200,
+      "montlyVisitor": 0,
+      "subdomain": [
+        {
+          "name": "shiavnsh.abc.com",
+          "usedStorage": "0gb",
+          "montlyVisitor": 0,
+          "domainTag": "Add On"
+        },
+        {
+          "name": "shiavnsh.abc.com",
+          "usedStorage": "0gb",
+          "montlyVisitor": 0,
+          "domainTag": "Add On"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "domain": "abcd.com",
+      "storage": "100gb",
+      "usedStorage": "0gb",
+      "domainTag": "Primary",
+      "availableDomains": 5,
+      "usedDomains": 3,
+      "monthlyVisitorCapacity": 1000,
+      "montlyVisitor": 0,
+      "subdomain": [
+        {
+          "name": "one.abcd.com",
+          "usedStorage": "0gb",
+          "montlyVisitor": 0,
+          "domainTag": "Add On"
+        },
+        {
+          "name": "two.abcd.com",
+          "usedStorage": "0gb",
+          "montlyVisitor": 0,
+          "domainTag": "Add On"
+        }
+      ],
+      "id": 5
+    }
+  ]
+}
